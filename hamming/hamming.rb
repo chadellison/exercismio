@@ -6,15 +6,10 @@ class Hamming
     end
     dna_1 = strand_1.chars
     dna_2 = strand_2.chars
-    count = 0
     compare = dna_1.zip(dna_2)
-    compare.each do |strand|
-      if strand[0] == strand[1]
-        count += 0
-      else
-        count += 1
-      end
+    counter = compare.count do |strand|
+      strand[0] != strand[1]
     end
-    count
+    counter
   end
 end
