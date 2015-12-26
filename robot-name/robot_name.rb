@@ -13,10 +13,7 @@ class Robot
 
   def generate_name
     letters = ("A".."Z").to_a
-    2.times do
-      @name << letters.sample
-      letters.delete(@name[-1])
-    end
+    @name << letters.sample(2)
     3.times { @name << rand(0..9).to_s }
     @name.join
   end
