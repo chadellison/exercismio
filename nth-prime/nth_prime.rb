@@ -1,16 +1,12 @@
 class Prime
   def self.nth(number)
-    raise(ArgumentError) if number < 1
-    primes = (2..500_000).to_a.select { |n| n.odd? }
-    primes.reject! { |n| n % 3 == 0 }
-    primes = [1, 2, 3] + primes
-    n = 3
-    until n == 10001
-      primes.reject! do |num|
-        num % n == 0 unless num == n
-      end
+    raise ArgumentError, "Number must be greater than zero" if number < 1
+    primes = []
+    n = 2
+    until n > number * number.to_s.length * 2.7
+      primes << n unless (2...n).to_a.detect { |num| n % num == 0 }
       n += 1
     end
-    primes[number]
+    primes[number -1]
   end
 end
