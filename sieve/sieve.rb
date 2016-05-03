@@ -1,19 +1,25 @@
 class Sieve
-  attr_reader :number
+  attr_reader :limit
 
-  def initialize(number)
-    @number = number
+  def initialize(limit)
+    @limit = limit
   end
 
   def primes
-    (2..number).select do |num|
-      prime?(num)
+    return [] if limit < 2
+    range = (2..limit)
+
+    range.each do |number|
+      range = range.reject do |value|
+        multiples(number).include?(value)
+      end
     end
+    range
   end
 
-  def prime?(integer)
-    (2..(integer / 2)).none? do |num|
-      integer % num == 0
+  def multiples(number)
+    ((number + 1)..limit).select do |num|
+      num % number == 0
     end
   end
 end
